@@ -146,70 +146,70 @@ fun VistaSensores() {
             )
 
             // Sección Acelerómetro
-            SeccionSensores(
-                titulo = "Acelerómetro"
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
             ) {
-                if (accelerometer == null) {
-                    Text("Acelerómetro no disponible en este dispositivo")
-                } else {
-                    Column(
-                        verticalArrangement = Arrangement.spacedBy(12.dp)
-                    ) {
-                        ValorEje("X", x)
-                        ValorEje("Y", y)
-                        ValorEje("Z", z)
+                Column(
+                    modifier = Modifier.padding(20.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(
+                        text = "Acelerómetro",
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.padding(bottom = 16.dp)
+                    )
+                    if (accelerometer == null) {
+                        Text("Acelerómetro no disponible en este dispositivo")
+                    } else {
+                        Column(
+                            verticalArrangement = Arrangement.spacedBy(12.dp)
+                        ) {
+                            ValorEje("X", x)
+                            ValorEje("Y", y)
+                            ValorEje("Z", z)
+                        }
                     }
                 }
             }
 
             // Sección Sensor de Luz
-            SeccionSensores(
-                titulo = "Sensor de Luminosidad"
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
             ) {
-                if (lightSensor == null) {
-                    Text("Sensor de luz no disponible en este dispositivo")
-                } else {
-                    Column(
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.spacedBy(8.dp)
-                    ) {
-                        Text(
-                            text = lux.toString() + " lux",
-                            fontSize = 32.sp,
-                            fontWeight = FontWeight.SemiBold
-                        )
-                        Text(
-                            text = interpretarLuminosidad(lux),
-                            fontSize = 18.sp,
-                            color = MaterialTheme.colorScheme.secondary
-                        )
+                Column(
+                    modifier = Modifier.padding(20.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(
+                        text = "Sensor de Luminosidad",
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.padding(bottom = 16.dp)
+                    )
+                    if (lightSensor == null) {
+                        Text("Sensor de luz no disponible en este dispositivo")
+                    } else {
+                        Column(
+                            horizontalAlignment = Alignment.CenterHorizontally,
+                            verticalArrangement = Arrangement.spacedBy(8.dp)
+                        ) {
+                            Text(
+                                text = lux.toString() + " lux",
+                                fontSize = 32.sp,
+                                fontWeight = FontWeight.SemiBold
+                            )
+                            Text(
+                                text = interpretarLuminosidad(lux),
+                                fontSize = 18.sp,
+                                color = MaterialTheme.colorScheme.secondary
+                            )
+                        }
                     }
                 }
             }
-        }
-    }
-}
-
-@Composable
-fun SeccionSensores(
-    titulo: String,
-    content: @Composable () -> Unit
-) {
-    Card(
-        modifier = Modifier.fillMaxWidth(),
-        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
-    ) {
-        Column(
-            modifier = Modifier.padding(20.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Text(
-                text = titulo,
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(bottom = 16.dp)
-            )
-            content()
         }
     }
 }
@@ -237,11 +237,11 @@ fun ValorEje(eje: String, valor: Float) {
 
 fun determinarColorFondo(lux: Float): Color {
     return when {
-        lux < 10 -> Color(0xFF1A1A2E) // Muy oscuro
-        lux < 50 -> Color(0xFF2D2D44) // Oscuro
-        lux < 500 -> Color(0xFFE8E8E8) // Normal
-        lux < 10000 -> Color(0xFFF5F5F5) // Claro
-        else -> Color(0xFFFFFFFF) // Muy claro
+        lux < 10 -> Color(0xFF1A1A2E)       // Muy oscuro
+        lux < 50 -> Color(0xFF2D2D44)       // Oscuro
+        lux < 500 -> Color(0xFFE8E8E8)      // Normal
+        lux < 10000 -> Color(0xFFF5F5F5)    // Claro
+        else -> Color(0xFFFFFFFF)           // Muy claro
     }
 }
 
